@@ -17,9 +17,9 @@ class Robot:
     def get_newCard(self, card):
         self.cards.append(card)
         self.cards.sort(key=lambda x: (x[1], x[0]))
-        print(f"1.机器人{self.name}的手牌为：{self.cards}")
+        #print(f"1.机器人{self.name}的手牌为：{self.cards}")
         self.out = self.play_card(card)
-        print(f"2.机器人{self.name}的手牌为：{self.cards}")
+        #print(f"2.机器人{self.name}的手牌为：{self.cards}")
 
 
     def play_card(self, card):

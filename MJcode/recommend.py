@@ -14,7 +14,6 @@ from collections import Counter
 from typing import List
 import copy
 
-
 def run(temp, count: int, hasRun: bool):
     """
     :param temp: 临时字典变量

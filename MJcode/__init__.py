@@ -33,12 +33,16 @@ def GameControl():
         for j in item:
             Cards[j] -= 1
 
-    player = Player(cards=init_cards[0])
     r1, r2, r3 = (Robot(name="Robot" + str(i), cards=init_cards[i]) for i in range(1, 4))
     AllMa = AllMa[52:]  # 发了52张牌，更新牌库
     print(f"发牌完成！您的手牌如下\t牌库还有{len(AllMa)}张")
+    init_cards[0].sort(key=lambda x: (x[1], x[0]))
+    print(init_cards[0])
+    throw = input("请你定一个缺(条 筒 万)：")
+    player = Player(cards=init_cards[0],throw = throw)
     player.cards.sort(key=lambda x: (x[1], x[0]))
-    print(player.cards)
+    print(player.cards,len(player.cards))
+
     gamelist = [player, r1, r2, r3]
     i = 0  # 记录初始出牌权限位置
 
@@ -51,11 +55,16 @@ def GameControl():
                 gamelist[i].get_newCard(AllMa[0])
                 del AllMa[0]
             except IndexError:
-                print("本局刘局，共计 %d 回合"%round)
+                print("本局流局，共计 %d 回合"%round)
+                break
             if i != 0: # 如果是机器人 判断每一张牌打出的牌是否满足 碰、杠
                 out = gamelist[i].out
                 player.judge(out)
                 Gflag = player.gangflag
+                win = player.Hu
+                if win == 1:
+                    AllMa = []
+                    break
                 print("Gflag为：",Gflag)
             print(f"总牌数为:{len(AllMa)}")
             # 增加机器人出牌后 判断玩家满足 碰、杠、点炮的条件？
@@ -67,6 +76,4 @@ def GameControl():
                     i = 0
                 else:
                     i += 1
-
-
 GameControl()
