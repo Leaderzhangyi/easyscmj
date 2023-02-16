@@ -17,13 +17,13 @@ class win:
         self.isOther = isOther
 
     def check(self):
-        res = [] # 听牌数组
+        res = []  # 听牌数组
         vis = Counter(self.cards)
         temp = copy.deepcopy(vis)
-        if self.isOther == True:
+        if self.isOther:
             if self.newCard[1:] != self.throw and vis[self.newCard] < 4:
                 temp[self.newCard] += 1
-                if self.run(temp,len(self.cards) + 1,False):
+                if self.run(temp, len(self.cards) + 1, False):
                     return True
             return False
         else:
@@ -36,7 +36,6 @@ class win:
                 return False
             else:
                 return res
-
 
     def run(self, temp, count: int, hasRun: bool):
         """
