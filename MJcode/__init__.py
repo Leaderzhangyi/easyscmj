@@ -66,7 +66,7 @@ def GameControl():
                 if win == 1:
                     AllMa = []
                     break
-                print("Gflag为：", Gflag)
+              #  print("Gflag为：", Gflag)
             print(f"总牌数为:{len(AllMa)}")
             # 增加机器人出牌后 判断玩家满足 碰、杠、点炮的条件？
 
